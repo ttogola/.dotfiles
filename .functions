@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#run program, ignore output and return prompt immediately
+run() {
+    setsid $1 &> /dev/null &
+}
+
+#open file, ignore output and return prompt immediately
+open() {
+    xdg-open $1 &> /dev/null &
+}

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+dotsdir=~/.dotfiles
+olddir=~/.dotfiles_old
+dotfiles=".inputrc .bashrc .bash_aliases .functions .gitconfig .tmux.conf .vimrc .vrapperrc"
+
+mkdir -p $olddir
+cd $dotsdir
+
+for file in $dotfiles; do
+    #move to olddir as backup if already exists
+    mv ~/$file $olddir
+    #create new home symlinks
+    ln -sfv $dotsdir/$file ~/$file
+done
+
+#TODO:
+#check whether required folders are there first, echo status
+
+#create symlinks with custom destinations
+mv ~/.cmus/rc $olddir
+ln -sfv $dotsdir/rc ~/.cmus/rc
+
+echo "Installation complete"

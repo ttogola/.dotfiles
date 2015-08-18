@@ -6,6 +6,6 @@ run() {
 }
 
 #open file, ignore output and return prompt immediately
-open() {
+go() {
     xdg-open $1 &> /dev/null &
 }

@@ -108,4 +108,4 @@ export TERM="screen-256color"
 export PATH=$PATH:/opt/eclipse:~/bin
 JAVA_HOME='/usr/lib/jvm/java-8-oracle'
 
-. .functions
+. ~/.functions

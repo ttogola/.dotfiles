@@ -8,17 +8,22 @@ mkdir -p $olddir
 cd $dotsdir
 
 for file in $dotfiles; do
-    #move to olddir as backup if already exists
+  #move to olddir as backup if already exists and not a link
+  if ! [ -h ~/$file ]; then
     mv ~/$file $olddir
-    #create new home symlinks
+    #create new home symlink
     ln -sfv $dotsdir/$file ~/$file
+  fi
 done
 
 #TODO:
 #check whether required folders are there first, echo status
+#automate installation of shell utility scripts
 
 #create symlinks with custom destinations
-mv ~/.cmus/rc $olddir
-ln -sfv $dotsdir/rc ~/.cmus/rc
+if ! [ -h ~/.cmus/rc  ]; then
+  mv ~/.cmus/rc $olddir
+  ln -sfv $dotsdir/rc ~/.cmus/rc
+fi
 
 echo "Installation complete"

@@ -1,11 +1,39 @@
 #!/bin/bash
+#TODO: add status notifications
 
 #run program, ignore output and return prompt immediately
 run() {
-    setsid $1 &> /dev/null &
+  setsid $1 &> /dev/null &
 }
 
 #open file, ignore output and return prompt immediately
 go() {
-    xdg-open $1 &> /dev/null &
+  xdg-open $1 &> /dev/null &
+}
+
+#update music folder and cmus lib with recent downloads
+#TODO: add options
+#      append directly to lib.pl if socket is closed
+upzik() {
+  #check that folder is non-empty
+  if [ "$(ls -A ~/Downloads/)" ]; then
+    mv -i ~/Downloads/*.mp3 ~/Music/
+    #check cmus socket is open
+    if [ "$(ls -a ~/.cmus/ | grep socket | wc -l)" != 0 ]; then
+      cmus-remote -l ~/Music/
+    fi
+  fi
+}
+
+#load music into specified mobile player
+#TODO: option to specify target storage media
+#      option to specify source playlist
+loadzik() {
+  mkdir -p ~/Desktop/tmpzik/
+  #each line in source playlist is a path to a music file
+  while read p; do
+    cp "$p" ~/Desktop/tmpzik/
+  done <~/.cmus/playlist.pl
+
+  echo "still working on this"
 }

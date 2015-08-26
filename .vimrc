@@ -7,11 +7,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'tmux-plugins/vim-tmux'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter.git'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
-Plugin 'tmux-plugins/vim-tmux'
 Plugin 'vim-scripts/ShowMarks'
 call vundle#end()
 filetype plugin indent on
@@ -38,9 +38,13 @@ hi cursorcolumn ctermbg=0
 
 set fo=cqt
 set wm=0
+set tw=0
+set shiftwidth=2
+set softtabstop=2
 set expandtab
-set tabstop=4
+set nojoinspaces
 set autoindent
+set foldcolumn=1
 
 set noswapfile
 set pastetoggle=<F3>
@@ -70,6 +74,13 @@ nnoremap ; :
 "c-i and c-x to increment and decrement integer
 map <C-i> <C-a>
 
+noremap 0 ^
+noremap j gj
+noremap k gk
+" Map <Leader>ff to display all lines with keyword under cursor
+" and ask which one to jump to
+nmap <leader>j [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
 noremap <C-w><C-o> <C-w>r
 noremap <C-w>r :so ~/.vimrc<CR>
 
@@ -77,13 +88,13 @@ nnoremap <bar> :vsp<CR>
 nnoremap _ :sp<CR>
 
 nnoremap <F4> :set hlsearch!<CR>
-nnoremap <Leader><Bslash> :set cursorcolumn!<CR>
+nnoremap <leader><Bslash> :set cursorcolumn!<CR>
 nnoremap / /\v
 vnoremap / /\v
 
 "find again <left right>
-nnoremap > ;
-nnoremap < ,
+nnoremap <leader>. ;
+nnoremap <leader>, ,
 nnoremap Y y$
 
 "list registers and marks
@@ -91,33 +102,44 @@ noremap <silent> <leader>rl :reg<cr>
 noremap <silent> <leader>ml :marks<cr>
 
 "buffers
-nnoremap <Leader>l :ls<CR>
-nnoremap <Leader>b :bp<CR>
-nnoremap <Leader>f :bn<CR>
+nnoremap <leader>l :ls<CR>
+nnoremap <leader>b :bp<CR>
+nnoremap <leader>f :bn<CR>
 "go to last used buffer
-nnoremap <Leader>g :e#<CR>
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
+nnoremap <leader>g :e#<CR>
+nnoremap <leader>1 :1b<CR>
+nnoremap <leader>2 :2b<CR>
+nnoremap <leader>3 :3b<CR>
+nnoremap <leader>4 :4b<CR>
+nnoremap <leader>5 :5b<CR>
+nnoremap <leader>6 :6b<CR>
+nnoremap <leader>7 :7b<CR>
+nnoremap <leader>8 :8b<CR>
+nnoremap <leader>9 :9b<CR>
+nnoremap <leader>0 :10b<CR>
 "show buffer number in status line.
 set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
-"uniform switch between tmux and vim splits (from aaronjensen)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"uniform switch between tmux and vim splits
+"(adapted from aaronjensen to wrap around when reach last window)
+"see .tmux.conf
 if exists('$TMUX')
   function! TmuxOrSplitSwitch(wincmd, tmuxdir)
-    let previous_winnr = winnr()
+    let prev_winnr = winnr()
+    let prev_tmuxp = system("tmux display-message -p '#P'")
     silent! execute "wincmd " . a:wincmd
-    if previous_winnr == winnr()
+    if prev_winnr == winnr()
       call system("tmux select-pane -" . a:tmuxdir)
       redraw!
+      """
+      if prev_tmuxp == system("tmux display-message -p '#P'")
+        if (winnr() == 1)
+          silent! execute winnr("$") . "wincmd w"
+        else
+          silent! execute 1 . "wincmd w"
+        endif
+      endif
+      """
     endif
   endfunction
 
@@ -135,4 +157,3 @@ else
   map <C-k> <C-w>k
   map <C-l> <C-w>l
 endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

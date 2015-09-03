@@ -11,9 +11,16 @@ go() {
   xdg-open $1 &> /dev/null &
 }
 
+#m alias for music
+#update cmus music automatically on start
+m() {
+  cmus & sleep 0.1
+  cmus-remote -l ~/Music/ & fg
+  clear
+}
+
 #update music folder and cmus lib with recent downloads
 #TODO: add options
-#      append directly to lib.pl if socket is closed
 upzik() {
   #check that folder is non-empty
   if [ "$(ls -A ~/Downloads/)" ]; then

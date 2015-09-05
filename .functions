@@ -3,12 +3,12 @@
 
 #run program, ignore output and return prompt immediately
 run() {
-  setsid $1 &> /dev/null &
+  setsid $1 &> /dev/null
 }
 
 #open file, ignore output and return prompt immediately
 go() {
-  xdg-open $1 &> /dev/null &
+  xdg-open $1 &> /dev/null
 }
 
 #m alias for music

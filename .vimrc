@@ -43,8 +43,9 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set nojoinspaces
-set autoindent
+set smartindent
 set foldcolumn=1
+inoremap { {<CR>}<Esc>i<BS><Esc>ko
 
 set noswapfile
 set pastetoggle=<F3>
@@ -77,8 +78,8 @@ map <C-i> <C-a>
 noremap 0 ^
 noremap j gj
 noremap k gk
-" Map <Leader>ff to display all lines with keyword under cursor
-" and ask which one to jump to
+"display all lines with keyword under cursor
+"and ask which one to jump to
 nmap <leader>j [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 noremap <C-w><C-o> <C-w>r

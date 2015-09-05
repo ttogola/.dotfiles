@@ -1,4 +1,5 @@
 #convenience key-bindings
 bind -f library ` set lib_sort=filemtime
 bind -f library ~ set lib_sort=filename
+#trailing space left intentionally
 bind -f library f push live-filter 

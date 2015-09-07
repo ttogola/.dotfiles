@@ -11,6 +11,36 @@ go() {
   xdg-open $1 &> /dev/null
 }
 
+#check spelling (f->french, default is english)
+s() {
+  word=$1
+  option=''
+  if [ $1 == 'f' ]; then
+    option="-l fr"
+    word=$2
+  fi
+  result="$(echo $word | aspell $option -a | tail -n 2)"
+  if [ "$result" == "*" ]; then
+    echo "OK"
+  elif [ $(echo $result | grep "&" | wc -l) != 0 ]; then
+    echo $result | sed "s|& $word \([0-9]\+\) [0-9]\+: |\1 suggestions:\n|"
+  else
+    echo "Unknown word"
+  fi
+}
+
+#dictionary lookup (f->french, t->translate, default is english)
+sd() {
+  word=$1
+  option=''
+  if [ $1 == 'f' ] || [ $1 == 't' ]; then
+    option=$1
+    word=$2
+  fi
+  export STARDICT_DATA_DIR=/usr/share/"$option"stardict
+  sdcv $word
+}
+
 #m alias for music
 #update cmus music automatically on start
 m() {
@@ -21,7 +51,7 @@ m() {
 
 #update music folder and cmus lib with recent downloads
 #TODO: add options
-upzik() {
+mu() {
   #check that folder is non-empty
   if [ "$(ls -A ~/Downloads/)" ]; then
     mv -i ~/Downloads/*.mp3 ~/Music/
@@ -35,7 +65,7 @@ upzik() {
 #load music into specified mobile player
 #TODO: option to specify target storage media
 #      option to specify source playlist
-loadzik() {
+ml() {
   mkdir -p ~/Desktop/tmpzik/
   #each line in source playlist is a path to a music file
   while read p; do

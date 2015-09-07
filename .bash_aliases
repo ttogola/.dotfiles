@@ -1,3 +1,5 @@
+alias h='history'
+alias i='irssi'
 alias l='ls -lah'
 alias t="tmux -2"
 alias q='exit'

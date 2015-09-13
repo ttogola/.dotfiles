@@ -3,3 +3,9 @@ bind -f library ` set lib_sort=filemtime
 bind -f library ~ set lib_sort=filename
 #trailing space left intentionally
 bind -f library f push live-filter 
+
+#solarized adjusted from  green colorscheme
+set color_titleline_fg=cyan
+set color_win_cur_sel_fg=cyan
+set color_win_sel_fg=gray
+set color_statusline_fg=green

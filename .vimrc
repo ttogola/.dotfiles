@@ -17,9 +17,9 @@ call vundle#end()
 filetype plugin indent on
 
 set history=1000
-"set spell      " Spell checking
+"set spell      "Spell checking, or use aspell
 set hidden      "Allow buffer switching without saving
-set wildmenu    " Show list instead of just completing
+set wildmenu    "Show list instead of just completing
 "Command <Tab> completion, list matches, then longest common part, then all.
 set wildmode=list:longest,full
 set list
@@ -45,7 +45,6 @@ set expandtab
 set nojoinspaces
 set smartindent
 set foldcolumn=1
-inoremap { {<CR>}<Esc>i<BS><Esc>ko
 
 set noswapfile
 set pastetoggle=<F3>
@@ -81,6 +80,10 @@ noremap k gk
 "display all lines with keyword under cursor
 "and ask which one to jump to
 nmap <leader>j [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+"applies the macro to the visual selection
+"otherwise, use :1,3norm! @q for instance
+vnoremap @ :norm! @
 
 noremap <C-w><C-o> <C-w>r
 noremap <C-w>r :so ~/.vimrc<CR>

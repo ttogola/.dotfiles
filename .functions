@@ -1,4 +1,5 @@
 #!/bin/bash
+#useful routines, deemed too short to be in their own files
 #TODO: add status notifications
 
 #run program, ignore output and return prompt immediately
@@ -9,6 +10,16 @@ run() {
 #open file, ignore output and return prompt immediately
 go() {
   xdg-open $1 &> /dev/null
+}
+
+#lock screen and put computer to sleep
+zzz() {
+  gnome-screensaver-command -l
+
+  dbus-send --system --print-reply \
+    --dest="org.freedesktop.UPower" \
+    /org/freedesktop/UPower \
+    org.freedesktop.UPower.Suspend
 }
 
 #check spelling (f->french, default is english)
@@ -30,6 +41,9 @@ s() {
 }
 
 #dictionary lookup (f->french, t->translate, default is english)
+#TODO: highlight occurences of searched word
+#      add colors (eg: type of word...), change format
+#      fix annoying glitch with suggestions in less
 sd() {
   word=$1
   option=''
@@ -38,7 +52,7 @@ sd() {
     word=$2
   fi
   export STARDICT_DATA_DIR=/usr/share/"$option"stardict
-  sdcv $word
+  sdcv $word | less
 }
 
 #m alias for music
@@ -69,7 +83,7 @@ ml() {
   mkdir -p ~/Desktop/tmpzik/
   #each line in source playlist is a path to a music file
   while read p; do
-    cp "$p" ~/Desktop/tmpzik/
+    "cp" "$p" ~/Desktop/tmpzik/
   done <~/.cmus/playlist.pl
 
   echo "still working on this"

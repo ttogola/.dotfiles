@@ -1,3 +1,5 @@
+"TODO: prevent tab from doing increments
+"
 "required for Vundle
 set nocompatible
 set updatetime=0
@@ -31,7 +33,7 @@ set background=dark
 colorscheme solarized
 syntax enable
 
-set number
+set relativenumber
 set cursorline
 highlight clear SignColumn
 hi cursorcolumn ctermbg=0
@@ -47,7 +49,7 @@ set smartindent
 set foldcolumn=1
 
 set noswapfile
-set pastetoggle=<F3>
+set pastetoggle=<C-w>p
 
 set gdefault
 set incsearch
@@ -75,8 +77,8 @@ nnoremap ; :
 map <C-i> <C-a>
 
 noremap 0 ^
-noremap j gj
-noremap k gk
+"noremap j gj
+"noremap k gk
 "display all lines with keyword under cursor
 "and ask which one to jump to
 nmap <leader>j [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
@@ -91,7 +93,7 @@ noremap <C-w>r :so ~/.vimrc<CR>
 nnoremap <bar> :vsp<CR>
 nnoremap _ :sp<CR>
 
-nnoremap <F4> :set hlsearch!<CR>
+nnoremap <leader>h :set hlsearch!<CR>
 nnoremap <leader><Bslash> :set cursorcolumn!<CR>
 nnoremap / /\v
 vnoremap / /\v
@@ -99,6 +101,8 @@ vnoremap / /\v
 "find again <left right>
 nnoremap <leader>. ;
 nnoremap <leader>, ,
+"compile short c++ program (use make for bigger projects)
+nnoremap <leader>w :!cd %:p:h; g++ %:t<CR>
 nnoremap Y y$
 
 "list registers and marks
@@ -109,6 +113,7 @@ noremap <silent> <leader>ml :marks<cr>
 nnoremap <leader>l :ls<CR>
 nnoremap <leader>b :bp<CR>
 nnoremap <leader>f :bn<CR>
+nnoremap <leader>d :bd<CR>
 "go to last used buffer
 nnoremap <leader>g :e#<CR>
 nnoremap <leader>1 :1b<CR>
@@ -130,13 +135,13 @@ set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 if exists('$TMUX')
   function! TmuxOrSplitSwitch(wincmd, tmuxdir)
     let prev_winnr = winnr()
-    let prev_tmuxp = system("tmux display-message -p '#P'")
+    let prev_tmuxp = system("tmux display-message -p '#p'")
     silent! execute "wincmd " . a:wincmd
     if prev_winnr == winnr()
       call system("tmux select-pane -" . a:tmuxdir)
       redraw!
       """
-      if prev_tmuxp == system("tmux display-message -p '#P'")
+      if prev_tmuxp == system("tmux display-message -p '#p'")
         if (winnr() == 1)
           silent! execute winnr("$") . "wincmd w"
         else

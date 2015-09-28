@@ -19,7 +19,7 @@ zzz() {
   dbus-send --system --print-reply \
     --dest="org.freedesktop.UPower" \
     /org/freedesktop/UPower \
-    org.freedesktop.UPower.Suspend
+    org.freedesktop.UPower.Suspend &> /dev/null
 }
 
 #check spelling (f->french, default is english)
@@ -66,7 +66,7 @@ m() {
 #update music folder and cmus lib with recent downloads
 #TODO: add options
 mu() {
-  #check that folder is non-empty
+  #check that folder contains mp3 files
   if [ "$(ls -A ~/Downloads/)" ]; then
     mv -i ~/Downloads/*.mp3 ~/Music/
     #check cmus socket is open

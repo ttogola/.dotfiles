@@ -1,3 +1,4 @@
+alias e='grep -E'
 alias h='history'
 alias i='irssi'
 alias l='ls -lah'

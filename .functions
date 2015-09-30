@@ -42,7 +42,7 @@ s() {
 
 #dictionary lookup (f->french, t->translate, default is english)
 #TODO: highlight occurences of searched word
-#      add colors (eg: type of word...), change format
+#      add colors (eg: type of word...), change format, check less options
 #      fix annoying glitch with suggestions in less
 sd() {
   word=$1

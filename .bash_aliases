@@ -12,3 +12,7 @@ alias rm='rm -i'
 alias lk='gnome-screensaver-command -l'
 alias off='sudo shutdown -P now'
 alias offon='sudo shutdown -r now'
+
+#temp
+alias slin='ssh ttogola@linux.student.cs.uwaterloo.ca'
+alias stau='ssh ttogola@taurine.csclub.uwaterloo.ca'

@@ -33,6 +33,8 @@ set background=dark
 colorscheme solarized
 syntax enable
 
+"show current line number in addition to relative line numbers
+set number
 set relativenumber
 set cursorline
 highlight clear SignColumn
@@ -101,9 +103,10 @@ vnoremap / /\v
 "find again <left right>
 nnoremap <leader>. ;
 nnoremap <leader>, ,
-"compile short c++ program (use make for bigger projects)
-nnoremap <leader>w :!cd %:p:h; g++ %:t<CR>
 nnoremap Y y$
+"compile short programs (use make for bigger projects)
+"TODO: check extension if c,c++,java program and choose correct compiler
+nnoremap <leader>w :!cd %:p:h; g++ %:t -o %:t.out<CR>
 
 "list registers and marks
 noremap <silent> <leader>rl :reg<cr>

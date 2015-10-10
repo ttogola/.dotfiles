@@ -1,7 +1,7 @@
 alias e='grep -E'
 alias h='history'
 alias i='irssi'
-alias l='ls -lah'
+alias l='ls -ahlrt'
 alias q='exit'
 alias c='clear'
 alias t="tmux -2"
@@ -13,6 +13,4 @@ alias lk='gnome-screensaver-command -l'
 alias off='sudo shutdown -P now'
 alias offon='sudo shutdown -r now'
 
-#temp
-alias slin='ssh ttogola@linux.student.cs.uwaterloo.ca'
-alias stau='ssh ttogola@taurine.csclub.uwaterloo.ca'
+alias g++='g++ -Wall -g -std=c++11'

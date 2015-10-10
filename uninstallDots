@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#TODO:  ask if want to uninstall related programs (eg: cmus)
+#       free all related dependencies
+#       handle errors
+
+dotsdir="~/.dotfiles"
+olddir="~/.dotfiles_old"
+
+while true; do
+    read -p  "You really want to remove all of ${dotsdir} ? " ans
+    case $ans in
+        yes )  rm -rf $dotsdir; rm -f ~/.cmus/rc; break;;
+        [Nn] ) exit;;
+        * ) echo "yes or no?";;
+    esac
+done
+
+while true; do
+    read -p  "Do you want to keep ${olddir} ? " ans
+    case $ans in
+        no ) rm -rf $olddir; break;;
+        [Yy]* ) exit;;
+        * ) echo "yes or no?";;
+    esac
+done

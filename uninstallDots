@@ -7,15 +7,21 @@
 dotsdir="~/.dotfiles"
 olddir="~/.dotfiles_old"
 
+# delete symlinks
+find ~/ -lname "${dotsdir}/*" -delete
+rm -f ~/.cmus/rc
+
+# prompt to delete target files
 while true; do
     read -p  "You really want to remove all of ${dotsdir} ? " ans
     case $ans in
-        yes )  rm -rf $dotsdir; rm -f ~/.cmus/rc; break;;
+        yes )  rm -rf $dotsdir; break;;
         [Nn] ) exit;;
         * ) echo "yes or no?";;
     esac
 done
 
+# prompt to keep old target files
 while true; do
     read -p  "Do you want to keep ${olddir} ? " ans
     case $ans in

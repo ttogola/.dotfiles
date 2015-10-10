@@ -1,7 +1,9 @@
 #!/bin/bash
 
-dotsdir=~/.dotfiles
-olddir=~/.dotfiles_old
+#TODO: add muttrc, irssiconf, ... other folders
+
+dotsdir="~/.dotfiles"
+olddir="~/.dotfiles_old"
 dotfiles=".inputrc .bashrc .bash_aliases .functions .gitconfig .tmux.conf .vimrc .vrapperrc"
 
 mkdir -p $olddir

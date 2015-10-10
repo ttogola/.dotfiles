@@ -104,9 +104,8 @@ vnoremap / /\v
 nnoremap <leader>. ;
 nnoremap <leader>, ,
 nnoremap Y y$
-"compile short programs (use make for bigger projects)
-"TODO: check extension if c,c++,java program and choose correct compiler
-nnoremap <leader>w :!cd %:p:h; g++ %:t -o %:t.out<CR>
+"compile current program (use make for bigger projects)
+nnoremap <leader>w :!cd %:p:h; g++ -Wall -g -std=c++11 %:t -o %:t.out<CR>
 
 "list registers and marks
 noremap <silent> <leader>rl :reg<cr>

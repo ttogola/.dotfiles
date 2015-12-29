@@ -1,0 +1,15 @@
+# play/pause cmus
+"cmus-remote -C 'player-pause'"
+    XF86AudioPlay
+
+# stop cmus
+"cmus-remote -s"
+    XF86AudioStop
+
+# next cmus
+"cmus-remote -n"
+    XF86AudioNext
+
+# prev cmus
+"cmus-remote -r"
+    XF86AudioPrev

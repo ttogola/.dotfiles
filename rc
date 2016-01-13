@@ -3,6 +3,8 @@ bind -f library ` set lib_sort=filemtime
 bind -f library ~ set lib_sort=filename
 #trailing space left intentionally
 bind -f library f push live-filter 
+#re-shuffle
+bind -f library S shuffle
 
 #solarized adjusted from  green colorscheme
 set color_titleline_fg=cyan

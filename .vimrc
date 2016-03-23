@@ -1,11 +1,12 @@
 "TODO: markdown-> headings, italic/bold, lists/ordered, block quotes...
-"       remap normal mode space bar to allow mini page shift or somthin
 "       auto-next item when in list, ...
 "       update compile to allow linking..
 "       indicate intermediate binding value
 "       auto resize splits when coming back to vim pane (mksession,winfocus)
 "       easier scroll through cmd history
 "       call gdb/valgrind from within vim
+"       syntastic html, js
+"       surround plugin
 
 ""Vundle plugin manager""
 set nocompatible
@@ -23,6 +24,7 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/ShowMarks'
 Plugin 'majutsushi/tagbar.git'
+Plugin 'tpope/vim-fugitive.git'
 call vundle#end()
 filetype plugin indent on
 """""""""""""""""""""""""
@@ -69,6 +71,10 @@ set incsearch
 set splitbelow
 set splitright
 
+"autocmds
+au FileType html set shiftwidth=2 softtabstop=2
+au FileType javascript set shiftwidth=4 softtabstop=4
+""""""""""""""""""""""""
 "Syntastic basic settings
 "TODO bindings for :lnext :lprev
 set statusline+=%#warningmsg#
@@ -114,6 +120,7 @@ nnoremap _ :sp<CR>
 "and ask which one to jump to
 nmap <leader>j [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
+"TODO: needs fixin'
 "zoom current buffer
 nnoremap <C-w>o :mksession!<CR>:wincmd o<CR>
 "restore previous session
@@ -132,7 +139,7 @@ nnoremap <leader>h :set hlsearch!<CR>
 "highlight column
 nnoremap <leader><Bslash> :set cursorcolumn!<CR>
 
-"run prog (extend to other languages)
+"run prog (extend to other languages: bash, python, node)
 nnoremap <leader>p :! ./%.out<CR>
 "compile current C/C++ program (use make for bigger projects)
 nnoremap <leader>w :!cd %:p:h; g++ -Wall -g -std=c++11 %:t -o %:t.out<CR>
@@ -173,36 +180,36 @@ set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 "(adapted from aaronjensen to wrap around when reach last window)
 "see .tmux.conf
 if exists('$TMUX')
-  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
-    let prev_winnr = winnr()
-    let prev_tmuxp = system("tmux display-message -p '#p'")
-    silent! execute "wincmd " . a:wincmd
-    if prev_winnr == winnr()
-      call system("tmux select-pane -" . a:tmuxdir)
-      redraw!
-      """
-      if prev_tmuxp == system("tmux display-message -p '#p'")
-        if (winnr() == 1)
-          silent! execute winnr("$") . "wincmd w"
-        else
-          silent! execute 1 . "wincmd w"
+    function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+        let prev_winnr = winnr()
+        let prev_tmuxp = system("tmux display-message -p '#p'")
+        silent! execute "wincmd " . a:wincmd
+        if prev_winnr == winnr()
+            call system("tmux select-pane -" . a:tmuxdir)
+            redraw!
+            """
+            if prev_tmuxp == system("tmux display-message -p '#p'")
+                if (winnr() == 1)
+                    silent! execute winnr("$") . "wincmd w"
+                else
+                    silent! execute 1 . "wincmd w"
+                endif
+            endif
+            """
         endif
-      endif
-      """
-    endif
-  endfunction
+    endfunction
 
-  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+    let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+    let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+    let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
-  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
-  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
-  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
-  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
+    nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
+    nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
+    nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
+    nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
 else
-  map <C-h> <C-w>h
-  map <C-j> <C-w>j
-  map <C-k> <C-w>k
-  map <C-l> <C-w>l
+    map <C-h> <C-w>h
+    map <C-j> <C-w>j
+    map <C-k> <C-w>k
+    map <C-l> <C-w>l
 endif

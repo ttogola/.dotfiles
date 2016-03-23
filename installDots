@@ -1,6 +1,9 @@
 #!/bin/bash
 
+# Allows quick setup of preferred terminal environment
+# ssh -> clone .dotfiles -> installDots -> do things -> uninstallDots -> exit
 #TODO: add muttrc, irssiconf, ... other folders
+#      custom installations
 
 dotsdir="~/.dotfiles"
 olddir="~/.dotfiles_old"

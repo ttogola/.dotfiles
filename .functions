@@ -1,45 +1,49 @@
 #!/bin/bash
 #useful routines, deemed too short to be in their own files
 #TODO: add status notifications
-#kill function (var names for apps?)
-#quit, fquit?
 
 #run program, ignore output and return prompt immediately
 run() {
-  setsid $1 &> /dev/null
+    setsid $1 &> /dev/null
 }
 
+# terminate process by name
+k() {
+    killall $1
+}
+
+#TODO: handle filenames containing spaces
 #open file, ignore output and return prompt immediately
 go() {
-  xdg-open $1 &> /dev/null
+    xdg-open $1 &> /dev/null
 }
 
 #lock screen and put computer to sleep
 zzz() {
-  gnome-screensaver-command -l
+    gnome-screensaver-command -l
 
-  dbus-send --system --print-reply \
-    --dest="org.freedesktop.UPower" \
-    /org/freedesktop/UPower \
-    org.freedesktop.UPower.Suspend &> /dev/null
+    dbus-send --system --print-reply \
+        --dest="org.freedesktop.UPower" \
+        /org/freedesktop/UPower \
+        org.freedesktop.UPower.Suspend &> /dev/null
 }
 
 #check spelling (f->french, default is english)
 s() {
-  word=$1
-  option=''
-  if [ $1 == 'f' ]; then
-    option="-l fr"
-    word=$2
-  fi
-  result="$(echo $word | aspell $option -a | tail -n 2)"
-  if [ "$result" == "*" ]; then
-    echo "OK"
-  elif [ $(echo $result | grep "&" | wc -l) != 0 ]; then
-    echo $result | sed "s|& $word \([0-9]\+\) [0-9]\+: |\1 suggestions:\n|"
-  else
-    echo "Unknown word"
-  fi
+    word=$1
+    option=''
+    if [ $1 == 'f' ]; then
+        option="-l fr"
+        word=$2
+    fi
+    result="$(echo $word | aspell $option -a | tail -n 2)"
+    if [ "$result" == "*" ]; then
+        echo "OK"
+    elif [ $(echo $result | grep "&" | wc -l) != 0 ]; then
+        echo $result | sed "s|& $word \([0-9]\+\) [0-9]\+: |\1 suggestions:\n|"
+    else
+        echo "Unknown word"
+    fi
 }
 
 #dictionary lookup (f->french, t->translate, default is english)
@@ -47,63 +51,52 @@ s() {
 #      add colors (eg: type of word...), change format, check less options
 #      fix annoying glitch with suggestions in less
 sd() {
-  word=$1
-  option=''
-  if [ $1 == 'f' ] || [ $1 == 't' ]; then
-    option=$1
-    word=$2
-  fi
-  export STARDICT_DATA_DIR=/usr/share/"$option"stardict
-  sdcv $word | less
-}
-
-#m alias for music
-#update cmus music automatically on start
-m() {
-  cmus & sleep 0.1
-  cmus-remote -l ~/Music/ & fg
-  clear
+    word=$1
+    option=''
+    if [ $1 == 'f' ] || [ $1 == 't' ]; then
+        option=$1
+        word=$2
+    fi
+    export STARDICT_DATA_DIR=/usr/share/"$option"stardict
+    sdcv $word | less
 }
 
 # record audio directly from the sound card with pulse audio, compress from raw to hq mp3 with lame
 #TODO: specify duration, specify duration for multiple output files
 #      specify internal and/or external rec (combine outs into single file)
 #countdown
+#  ${$} pid
 rec() {
-  start=`date +"%s"`
-  #duration=$1 figure out args
-  #give non-destructive default name if no args
-  pacat --record -d alsa_output.pci-0000_00_1b.0.analog-stereo.monitor | lame -r -h - ~/Downloads/"$*".mp3 &
-  echo RECORDING
-  while [  `date +"%s"` -ne $((${start}+10)) ]; do
-    :
-  done
-  kill -3 "%pacat"
-  echo OVER
+    #start=`date +"%s"`
+    #duration=$1 figure out args
+    #give non-destructive default name if no args
+    pacat --record -d alsa_output.pci-0000_00_1b.0.analog-stereo.monitor | lame -r -h - ~/Downloads/"$*".mp3 # &
+    #echo RECORDING
+    #while [  `date +"%s"` -ne $((${start}+10)) ]; do
+    #:
+    #done
+    #kill -3 "%pacat"
+    #echo OVER
 }
 
 #update music folder and cmus lib with recent downloads
-#TODO: add options
 mu() {
-  #check that folder contains mp3 files
-  if [ "$(ls -A ~/Downloads/)" ]; then
-    mv -i ~/Downloads/*.mp3 ~/Music/
-    #check cmus socket is open
+    mv -i ~/Downloads/*.mp3 ~/Music/ &> /dev/null
+    #check cmus socket is open, if so update lib
     if [ "$(ls -a ~/.cmus/ | grep socket | wc -l)" != 0 ]; then
-      cmus-remote -l ~/Music/
+        cmus-remote -l ~/Music/
     fi
-  fi
 }
 
-#load music into specified mobile player
+#load music into specified mobile player (need to mount android..)
 #TODO: option to specify target storage media
 #      option to specify source playlist
 ml() {
-  mkdir -p ~/Desktop/tmpzik/
-  #each line in source playlist is a path to a music file
-  while read p; do
-    "cp" "$p" ~/Desktop/tmpzik/
-  done <~/.cmus/playlist.pl
+    mkdir -p ~/Desktop/tmpzik/
+    #each line in source playlist is a path to a music file
+    while read p; do
+        "cp" "$p" ~/Desktop/tmpzik/
+    done <~/.cmus/playlist.pl
 
-  echo "still working on this"
+    echo "still working on this"
 }

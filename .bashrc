@@ -103,13 +103,9 @@ fi
 
 
 ###################################################################
-export EDITOR='vim'
-export TERM="screen-256color"
-export PATH=$PATH:/opt/eclipse:~/bin
-JAVA_HOME='/usr/lib/jvm/java-8-oracle'
-S='/home/tieme/Desktop/school/term3'
-SRP='ttogola@linux.student.cs.uwaterloo.ca:~/cs246/1159/'
-SR='ttogola@linux.student.cs.uwaterloo.ca'
-SCS='ttogola@taurine.csclub.uwaterloo.ca'
+# noclobber prevents accidental overwriting
+#   use >| redirection to temporarily disable noclobber
+set -o noclobber
 
+. ~/.bash_env
 . ~/.functions

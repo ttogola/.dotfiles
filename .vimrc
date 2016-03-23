@@ -86,6 +86,11 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 """""""""""""""""""""""""
+"Fugitive
+" Gstatus [- (add/reset highlighted), cc (commit), r (reload status)]
+" Gdiff, Gpush
+nnoremap <leader>` :Gstatus<CR>
+"""""""""""""""""""""""""
 
 "search file names
 let g:ctrlp_map = '<c-p>'

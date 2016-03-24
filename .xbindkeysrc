@@ -6,10 +6,22 @@
 "cmus-remote -s"
     XF86AudioStop
 
-# next cmus
+# next song cmus
 "cmus-remote -n"
     XF86AudioNext
 
-# prev cmus
+# forward in song cmus
+"cmus-remote -k +5"
+    Control + XF86AudioNext
+
+# prev song cmus
 "cmus-remote -r"
     XF86AudioPrev
+
+# backward in song cmus
+"cmus-remote -k -5"
+    Control + XF86AudioPrev
+
+# loop current song
+"cmus-remote -C 'toggle repeat_current'"
+    Control + XF86AudioStop

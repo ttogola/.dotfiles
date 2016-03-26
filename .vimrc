@@ -7,6 +7,9 @@
 "       call gdb/valgrind from within vim
 "       syntastic html, js
 "       surround plugin
+"       arbitrary text highlighting
+"       common template files in .vim
+"       jedi completion
 
 ""Vundle plugin manager""
 set nocompatible
@@ -74,6 +77,7 @@ set splitright
 "autocmds
 au FileType html set shiftwidth=2 softtabstop=2
 au FileType javascript set shiftwidth=4 softtabstop=4
+"au ...
 """"""""""""""""""""""""
 "Syntastic basic settings
 "TODO bindings for :lnext :lprev
@@ -85,11 +89,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-"""""""""""""""""""""""""
-"Fugitive
-" Gstatus [- (add/reset highlighted), cc (commit), r (reload status)]
-" Gdiff, Gpush
-nnoremap <leader>` :Gstatus<CR>
 """""""""""""""""""""""""
 
 "search file names
@@ -106,6 +105,13 @@ noremap 0 ^
 nnoremap Y y$
 nnoremap / /\v
 vnoremap / /\v
+
+"Fugitive
+" Gstatus [- (add/reset highlighted), cc (commit), r (reload status)]
+" Gpush
+nnoremap <leader>` :Gstatus<CR>
+nnoremap <leader><Tab> :Gdiff<CR>
+"""""""""""""""""""""""""
 
 "open temp shell
 nnoremap <leader>s :shell<CR>
@@ -134,6 +140,8 @@ nnoremap <C-w>u :source ~/Session.vim<CR>
 "applies the macro to the visual selection
 "otherwise, use :1,3norm! @q for instance
 vnoremap @ :norm! @
+"create a todo
+let  @t = "iTODO: "
 
 noremap <C-w>r :source ~/.vimrc<CR>
 "rotate window layout

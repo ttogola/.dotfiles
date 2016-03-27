@@ -147,6 +147,8 @@ noremap <C-w>r :source ~/.vimrc<CR>
 "rotate window layout
 noremap <C-w><C-o> <C-w>r
 
+"toggle modifiable
+nnoremap <leader><space> :set ma!<CR>
 "highlight search matches
 nnoremap <leader>h :set hlsearch!<CR>
 "highlight column

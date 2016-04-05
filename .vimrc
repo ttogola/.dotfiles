@@ -33,7 +33,6 @@ filetype plugin indent on
 """""""""""""""""""""""""
 
 set history=1000
-"set spell      "Spell checking, or use aspell
 set hidden      "Allow buffer switching without saving
 set wildmenu    "Show list instead of just completing
 "Command <Tab> completion, list matches, then longest common part, then all.
@@ -75,8 +74,7 @@ set splitbelow
 set splitright
 
 "autocmds
-au FileType html set shiftwidth=2 softtabstop=2
-au FileType javascript set shiftwidth=4 softtabstop=4
+au FileType html setlocal shiftwidth=2 softtabstop=2
 "au ...
 """"""""""""""""""""""""
 "Syntastic basic settings
@@ -113,8 +111,8 @@ nnoremap <leader>` :Gstatus<CR>
 nnoremap <leader><Tab> :Gdiff<CR>
 """""""""""""""""""""""""
 
-"open temp shell
-nnoremap <leader>s :shell<CR>
+"open temporary terminal shell
+nnoremap <leader>t :shell<CR>
 "save file upon return to normal mode
 inoremap <Esc> <Esc>:w<CR>
 ",x and ,z to increment and decrement int under cursor
@@ -147,6 +145,8 @@ noremap <C-w>r :source ~/.vimrc<CR>
 "rotate window layout
 noremap <C-w><C-o> <C-w>r
 
+"toggle spell checking
+nnoremap <leader>s :set spell!<CR>
 "toggle modifiable
 nnoremap <leader><space> :set ma!<CR>
 "highlight search matches

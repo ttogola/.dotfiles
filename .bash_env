@@ -2,7 +2,7 @@
 
 export EDITOR='vim'
 export TERM="screen-256color"
-export PATH=$PATH:/opt/eclipse:~/bin
+export PATH=$PATH:/opt/eclipse:~/toolbox
 export PATH=$PATH:.
 export JAVA_HOME='/usr/lib/jvm/java-8-oracle'
 export NODE_PATH='/usr/local/lib/node_modules'

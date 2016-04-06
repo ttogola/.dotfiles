@@ -1,4 +1,4 @@
-"TODO: markdown-> headings, italic/bold, lists/ordered, block quotes...
+"TODO: markdown bindings
 "       auto-next item when in list, ...
 "       update compile to allow linking..
 "       indicate intermediate binding value
@@ -166,27 +166,15 @@ noremap <silent> <leader>rl :reg<cr>
 noremap <silent> <leader>ml :marks<cr>
 
 """"""""""""buffers"""""""""""""""
-nnoremap <leader>l :ls<CR>
+nnoremap <leader>l :ls<CR>:buffer<space>
 nnoremap <leader>b :bp<CR>
 nnoremap <leader>f :bn<CR>
+"go to last used buffer
+nnoremap <leader>g :e#<CR>
 "close current buffer and save path to last closed file
 nnoremap <leader>d :let lastClosed=expand('%:p')<CR>:bd<CR>
 "open last closed file
 nnoremap <leader>o :exe ":e " lastClosed<CR>
-
-"go to last used buffer
-nnoremap <leader>g :e#<CR>
-"move to buffer number
-nnoremap <leader>1 :1b<CR>
-nnoremap <leader>2 :2b<CR>
-nnoremap <leader>3 :3b<CR>
-nnoremap <leader>4 :4b<CR>
-nnoremap <leader>5 :5b<CR>
-nnoremap <leader>6 :6b<CR>
-nnoremap <leader>7 :7b<CR>
-nnoremap <leader>8 :8b<CR>
-nnoremap <leader>9 :9b<CR>
-nnoremap <leader>0 :10b<CR>
 "show buffer number in status line.
 set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 """"""""""""""""""""""""""""""""""

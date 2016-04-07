@@ -2,7 +2,7 @@
 
 # useful routines
 
-#run program, ignore output and return prompt immediately
+# run program, ignore output and return prompt immediately
 run() {
     setsid $1 &> /dev/null
 }
@@ -13,12 +13,12 @@ k() {
 }
 
 #TODO: handle filenames containing spaces
-#open file, ignore output and return prompt immediately
+# open file, ignore output and return prompt immediately
 go() {
     xdg-open $1 &> /dev/null
 }
 
-#lock screen and put computer to sleep
+# lock screen and put computer to sleep
 zzz() {
     gnome-screensaver-command -l
 
@@ -28,7 +28,15 @@ zzz() {
         org.freedesktop.UPower.Suspend &> /dev/null
 }
 
-#check spelling (f->french, default is english)
+# reparent a program to a new terminal
+rep() {
+    # give temporary full scope to ptrace
+    sudo su -c "echo 0 > /proc/sys/kernel/yama/ptrace_scope"
+    # reparent process PID under current terminal
+    reptyr `pidof $1`
+}
+
+# check spelling (f->french, default is english)
 s() {
     word=$1
     option=''
@@ -46,7 +54,7 @@ s() {
     fi
 }
 
-#dictionary lookup (f->french, t->translate, default is english)
+# dictionary lookup (f->french, t->translate, default is english)
 #TODO: highlight occurences of searched word
 #      add colors (eg: type of word...), change format, check less options
 #      fix annoying glitch with suggestions in less
@@ -61,7 +69,7 @@ sd() {
     sdcv $word | less
 }
 
-#update music folder and cmus lib with recent downloads
+# update music folder and cmus lib with recent downloads
 mu() {
     mv -i ~/Downloads/*.mp3 ~/Music/ &> /dev/null
     #check cmus socket is open, if so update lib
@@ -70,7 +78,7 @@ mu() {
     fi
 }
 
-#load music into specified mobile player (need to mount android..)
+# load music into specified mobile player (need to mount android..)
 #TODO: option to specify target storage media
 #      option to specify source playlist
 ml() {

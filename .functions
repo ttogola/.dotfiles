@@ -12,10 +12,9 @@ k() {
     killall $1
 }
 
-#TODO: handle filenames containing spaces
 # open file, ignore output and return prompt immediately
 go() {
-    xdg-open $1 &> /dev/null
+    xdg-open "$@" &> /dev/null
 }
 
 # lock screen and put computer to sleep

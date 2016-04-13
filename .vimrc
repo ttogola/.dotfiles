@@ -1,13 +1,10 @@
-"TODO: markdown bindings
-"       auto-next item when in list, ...
+"TODO:  auto-next item when in list, ...
 "       update compile to allow linking..
 "       indicate intermediate binding value
 "       auto resize splits when coming back to vim pane (mksession,winfocus)
 "       easier scroll through cmd history
 "       call gdb/valgrind from within vim
 "       syntastic html, js
-"       surround plugin
-"       arbitrary text highlighting
 "       common template files in .vim
 "       jedi completion
 
@@ -28,6 +25,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/ShowMarks'
 Plugin 'majutsushi/tagbar.git'
 Plugin 'tpope/vim-fugitive.git'
+Plugin 'tpope/vim-surround.git'
 call vundle#end()
 filetype plugin indent on
 """""""""""""""""""""""""

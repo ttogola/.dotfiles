@@ -4,7 +4,6 @@
 "       auto resize splits when coming back to vim pane (mksession,winfocus)
 "       easier scroll through cmd history
 "       call gdb/valgrind from within vim
-"       syntastic html, js
 "       common template files in .vim
 "       jedi completion
 
@@ -76,7 +75,9 @@ au FileType html setlocal shiftwidth=2 softtabstop=2
 "au ...
 """"""""""""""""""""""""
 "Syntastic basic settings
-"TODO bindings for :lnext :lprev
+nnoremap [e :lprev<CR>
+nnoremap ]e :lnext<CR>
+"TODO: syntastic html, js(jslint?) and other langs used
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*

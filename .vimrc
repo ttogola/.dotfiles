@@ -114,6 +114,7 @@ nnoremap <leader><Tab> :Gdiff<CR>
 nnoremap <leader>t :shell<CR>
 "save file on escape
 noremap <Esc> <Esc>:w<CR>
+inoremap <Esc> <Esc>:w<CR>
 ",x and ,z to increment and decrement int under cursor
 nnoremap <leader>x <C-a>
 nnoremap <leader>z <C-x>

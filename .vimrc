@@ -112,8 +112,8 @@ nnoremap <leader><Tab> :Gdiff<CR>
 
 "open temporary terminal shell
 nnoremap <leader>t :shell<CR>
-"save file upon return to normal mode
-inoremap <Esc> <Esc>:w<CR>
+"save file on escape
+noremap <Esc> <Esc>:w<CR>
 ",x and ,z to increment and decrement int under cursor
 nnoremap <leader>x <C-a>
 nnoremap <leader>z <C-x>

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-export EDITOR='vim'
+export EDITOR="vim"
 export TERM="screen-256color"
-export PATH=$PATH:/opt/eclipse:~/toolbox
 export PATH=$PATH:.
-export JAVA_HOME='/usr/lib/jvm/java-8-oracle'
-export NODE_PATH='/usr/local/lib/node_modules'
-export S='/home/tieme/Desktop/school/term3'
-export SRP='ttogola@linux.student.cs.uwaterloo.ca:~/cs246/1159/'
-export SR='ttogola@linux.student.cs.uwaterloo.ca'
-export SCS='ttogola@taurine.csclub.uwaterloo.ca'
+#export NODE_PATH='/usr/local/lib/node_modules'
+export H="/mnt/c/Users/Tieme"
+export D=$H"/Desktop"
+export S=$H"/Google Drive/uni/winter2017"
+export W=$H"/workspace"
+#export SRP="ttogola@linux.student.cs.uwaterloo.ca:~/cs246/1159/"
+export SR="ttogola@linux.student.cs.uwaterloo.ca"

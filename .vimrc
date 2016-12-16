@@ -13,19 +13,19 @@ set updatetime=0
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized.git'
-Plugin 'tmux-plugins/vim-tmux' "for .tmux.conf editing
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdcommenter.git'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'kien/ctrlp.vim'
-Plugin 'vim-scripts/ShowMarks'
-Plugin 'majutsushi/tagbar.git'
-Plugin 'tpope/vim-fugitive.git'
-Plugin 'tpope/vim-surround.git'
-call vundle#end()
+"call vundle#begin()
+"Plugin 'gmarik/Vundle.vim'
+"Plugin 'altercation/vim-colors-solarized.git'
+"Plugin 'tmux-plugins/vim-tmux' "for .tmux.conf editing
+"Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/nerdcommenter.git'
+"Plugin 'scrooloose/nerdtree.git'
+"Plugin 'kien/ctrlp.vim'
+"Plugin 'vim-scripts/ShowMarks'
+"Plugin 'majutsushi/tagbar.git'
+"Plugin 'tpope/vim-fugitive.git'
+"Plugin 'tpope/vim-surround.git'
+"call vundle#end()
 filetype plugin indent on
 """""""""""""""""""""""""
 
@@ -39,9 +39,9 @@ set list
 "Highlight problematic whitespace
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 
-set t_Co=256
+"set t_Co=256
 set background=dark
-colorscheme solarized
+colorscheme pablo
 syntax enable
 
 "show current line number in addition to relative line numbers
@@ -78,23 +78,23 @@ au FileType html setlocal shiftwidth=2 softtabstop=2
 nnoremap [e :lprev<CR>
 nnoremap ]e :lnext<CR>
 "TODO: syntastic html, js(jslint?) and other langs used
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_java_javac_config_file_enabled = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_java_javac_config_file_enabled = 1
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 """""""""""""""""""""""""
 
 "search file names
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
 "navigate files
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
 "navigate tags
-map <C-t> :TagbarToggle<CR>
+"map <C-t> :TagbarToggle<CR>
 
 let mapleader=","
 nnoremap ; :
@@ -106,8 +106,8 @@ vnoremap / /\v
 "Fugitive
 " Gstatus [- (add/reset highlighted), cc (commit), r (reload status)]
 " Gpush
-nnoremap <leader>` :Gstatus<CR>
-nnoremap <leader><Tab> :Gdiff<CR>
+"nnoremap <leader>` :Gstatus<CR>
+"nnoremap <leader><Tab> :Gdiff<CR>
 """""""""""""""""""""""""
 
 "open temporary terminal shell

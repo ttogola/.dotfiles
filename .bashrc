@@ -96,4 +96,3 @@ set -o noclobber
 
 . ~/.bash_env
 . ~/.bash_aliases
-. ~/.functions

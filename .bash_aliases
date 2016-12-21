@@ -12,7 +12,7 @@ alias rm='rm -i'
 
 # dev / temp
 alias g++='g++ -Wall -g -std=c++11'
-alias cds='cd "$S"'
+alias cds='cd "$s"'
 
 # let sudo use the user-set PATH
 #alias sudo='sudo env PATH=$PATH'

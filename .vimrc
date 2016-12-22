@@ -7,7 +7,7 @@
 "       common template files in .vim
 "       jedi completion
 
-""Vundle plugin manager""
+"VUNDLE
 set nocompatible
 set updatetime=0
 filetype off
@@ -15,68 +15,48 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 "call vundle#begin()
 "Plugin 'gmarik/Vundle.vim'
-"Plugin 'altercation/vim-colors-solarized.git'
-"Plugin 'tmux-plugins/vim-tmux' "for .tmux.conf editing
 "Plugin 'scrooloose/syntastic'
 "Plugin 'scrooloose/nerdcommenter.git'
 "Plugin 'scrooloose/nerdtree.git'
 "Plugin 'kien/ctrlp.vim'
-"Plugin 'vim-scripts/ShowMarks'
 "Plugin 'majutsushi/tagbar.git'
 "Plugin 'tpope/vim-fugitive.git'
 "Plugin 'tpope/vim-surround.git'
 "call vundle#end()
+
 filetype plugin indent on
 """""""""""""""""""""""""
 
-set history=1000
-set hidden      "Allow buffer switching without saving
-set wildmenu    "Show list instead of just completing
-"Command <Tab> completion, list matches, then longest common part, then all.
-set wildmode=list:longest,full
-set wildignorecase
-set list
-"Highlight problematic whitespace
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+let mapleader=","
+nnoremap ; :
+noremap 0 ^
+nnoremap Y y$
 
-"set t_Co=256
-set background=dark
+"TEXT
 colorscheme pablo
 syntax enable
-
-"show current line number in addition to relative line numbers
+set t_Co=256
+set background=dark
 set number
 set relativenumber
-set cursorline
-highlight clear SignColumn
-hi cursorcolumn ctermbg=0
-
-set fo=cqt
-set wm=0
-set tw=0
 set shiftwidth=4
 set softtabstop=4
 set expandtab
 set nojoinspaces
 set smartindent
-set foldcolumn=1
+"Show whitespace
+set list
+"Highlight problematic whitespace
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+"Toggle spell checking
+nnoremap <leader>s :set spell!<cr>
+"Highlight column
+nnoremap <leader><bslash> :set cursorcolumn!<cr>
+""""""""""""""""""""""""""""""""""""""""""""""""
 
-set noswapfile
-set pastetoggle=<C-w>p
-
-set gdefault
-set incsearch
-
-set splitbelow
-set splitright
-
-"autocmds
-au FileType html setlocal shiftwidth=2 softtabstop=2
-"au ...
-""""""""""""""""""""""""
-"Syntastic basic settings
-nnoremap [e :lprev<CR>
-nnoremap ]e :lnext<CR>
+"SYNTASTIC
+"nnoremap [e :lprev<CR>
+"nnoremap ]e :lnext<CR>
 "TODO: syntastic html, js(jslint?) and other langs used
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
@@ -86,102 +66,105 @@ nnoremap ]e :lnext<CR>
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
-"""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
 
-"search file names
-"let g:ctrlp_map = '<c-p>'
-"let g:ctrlp_cmd = 'CtrlP'
-"navigate files
-"map <C-n> :NERDTreeToggle<CR>
-"navigate tags
-"map <C-t> :TagbarToggle<CR>
-
-let mapleader=","
-nnoremap ; :
-noremap 0 ^
-nnoremap Y y$
-nnoremap / /\v
-vnoremap / /\v
-
-"Fugitive
+"FUGITIVE
 " Gstatus [- (add/reset highlighted), cc (commit), r (reload status)]
 " Gpush
 "nnoremap <leader>` :Gstatus<CR>
 "nnoremap <leader><Tab> :Gdiff<CR>
-"""""""""""""""""""""""""
-
-"open temporary terminal shell
-nnoremap <leader>t :shell<CR>
-"save file on escape
-noremap <Esc> <Esc>:w<CR>
-inoremap <Esc> <Esc>:w<CR>
-",x and ,z to increment and decrement int under cursor
-nnoremap <leader>x <C-a>
-nnoremap <leader>z <C-x>
-"find again <left right>
-nnoremap <leader>. ;
-nnoremap <leader>, ,
-"window splits
-nnoremap <bar> :vsp<CR>
-nnoremap _ :sp<CR>
-
-"display all lines with keyword under cursor
-"and ask which one to jump to
-nmap <leader>j [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-
-"TODO: needs fixin'
-"zoom current buffer
-nnoremap <C-w>o :mksession!<CR>:wincmd o<CR>
-"restore previous session
-nnoremap <C-w>u :source ~/Session.vim<CR>
-
-"applies the macro to the visual selection
-"otherwise, use :1,3norm! @q for instance
-vnoremap @ :norm! @
-"create a todo
-let  @t = "iTODO: "
-
-noremap <C-w>r :source ~/.vimrc<CR>
-"rotate window layout
-noremap <C-w><C-o> <C-w>r
-
-"toggle spell checking
-nnoremap <leader>s :set spell!<CR>
-"toggle modifiable
-nnoremap <leader><space> :set ma!<CR>
-"highlight search matches
-nnoremap <leader>h :set hlsearch!<CR>
-"highlight column
-nnoremap <leader><Bslash> :set cursorcolumn!<CR>
-
-"run prog (extend to other languages: bash, python, node)
-nnoremap <leader>p :! ./%.out<CR>
-"compile current C/C++ program (use make for bigger projects)
-nnoremap <leader>w :!cd %:p:h; g++ -Wall -g -std=c++11 %:t -o %:t.out<CR>
-"compile current Java program (use Ant for bigger projects)
-nnoremap <leader>v :!cd %:p:h; javac %:t<CR>
-
-"list registers and marks
-noremap <silent> <leader>rl :reg<cr>
-noremap <silent> <leader>ml :marks<cr>
-
-""""""""""""buffers"""""""""""""""
-nnoremap <leader>l :ls<CR>:buffer<space>
-nnoremap <leader>b :bp<CR>
-nnoremap <leader>f :bn<CR>
-"go to last used buffer
-nnoremap <leader>g :e#<CR>
-"close current buffer and save path to last closed file
-nnoremap <leader>d :let lastClosed=expand('%:p')<CR>:bd<CR>
-"open last closed file
-nnoremap <leader>o :exe ":e " lastClosed<CR>
-"show buffer number in status line.
-set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 """"""""""""""""""""""""""""""""""
 
-"uniform switch between tmux and vim splits
+"UTIL
+set noswapfile
+"Toggle modifiable
+nnoremap <leader><space> :set modifiable!<cr>
+"Open temporary terminal shell
+nnoremap <leader>t :shell<cr>
+"Save file on escape
+inoremap <esc> <esc>:write<cr>
+"Increment int under cursor
+nnoremap <leader>x <c-a>
+"Decrement int under cursor
+nnoremap <leader>z <c-x>
+"Refresh vimrc
+"Create a todo
+let  @t = "iTODO: "
+"Applies the macro to the visual selection
+"   otherwise, use :1,3norm! @q for instance
+vnoremap @ :norm! @
+"Run prog (TODO: extend to other languages: bash, python, node)
+nnoremap <leader>p :! ./%.out<cr>
+"Compile current C/C++ program (TODO: use make for bigger projects)
+nnoremap <leader>w :!cd %:p:h; g++ -Wall -g -std=c++11 %:t -o %:t.out<cr>
+"List registers and marks
+noremap <silent> <leader>rl :registers<cr>
+noremap <silent> <leader>ml :marks<cr>
+""""""""""""""""""""""""""""""""""""""
+
+"COMMAND LINE
+set history=1000
+"Show list of completion options
+set wildmenu
+"Command <Tab> completion, match order
+set wildmode=list:longest,full
+set wildignorecase
+""""""""""""""""""
+
+"AUTOCMDS
+au FileType html setlocal shiftwidth=2 softtabstop=2
+"au ...
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"SEARCH / NAVIGATION
+set gdefault
+set incsearch
+nnoremap / /\v
+vnoremap / /\v
+"Find again <left right>
+nnoremap <leader>. ;
+nnoremap <leader>, ,
+"Highlight search matches
+nnoremap <leader>h :set hlsearch!<cr>
+"Search file names
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
+"Navigate files
+"map <C-n> :NERDTreeToggle<CR>
+"Navigate tags
+"map <C-t> :TagbarToggle<CR>
+"Display all lines with keyword under cursor
+"   and ask which one to jump to
+nmap <leader>j [I:let nr = input("Select: ")<bar>exe "normal " . nr ."[\t"<cr>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"LAYOUT
+set splitbelow
+set splitright
+"Window splits
+nnoremap <bar> :vsplit<cr>
+nnoremap _ :split<cr>
+"""""""""""""""""""""""""
+
+"BUFFERS
+nnoremap <leader>l :ls<cr>:buffer<space>
+nnoremap <leader>b :bprevious<cr>
+nnoremap <leader>f :bnext<cr>
+"Go to last used buffer
+nnoremap <leader>g :edit#<cr>
+"Close current buffer and save path to last closed file
+nnoremap <leader>d :let lastClosed=expand('%:p')<cr>:bdelete<cr>
+"Open last closed file
+nnoremap <leader>o :execute ":edit " lastClosed<cr>
+"Show buffer number in status line.
+set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+"Allow buffer switching without saving
+set hidden
+"""""""""""""""""""""""""""""""""""""""""
+
+"Uniform switch between tmux and vim splits
 "(adapted from aaronjensen to wrap around when reach last window)
-"see .tmux.conf
+"See .tmux.conf
 if exists('$TMUX')
     function! TmuxOrSplitSwitch(wincmd, tmuxdir)
         let prev_winnr = winnr()
@@ -206,13 +189,13 @@ if exists('$TMUX')
     let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
     let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
-    nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
-    nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
-    nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
-    nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
+    nnoremap <silent> <c-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
+    nnoremap <silent> <c-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
+    nnoremap <silent> <c-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
+    nnoremap <silent> <c-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
 else
-    map <C-h> <C-w>h
-    map <C-j> <C-w>j
-    map <C-k> <C-w>k
-    map <C-l> <C-w>l
+    map <c-h> <c-w>h
+    map <c-j> <c-w>j
+    map <c-k> <c-w>k
+    map <c-l> <c-w>l
 endif

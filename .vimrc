@@ -18,7 +18,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter.git'
 Plugin 'scrooloose/nerdtree.git'
-Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar.git'
 Plugin 'tpope/vim-fugitive.git'
 Plugin 'tpope/vim-surround.git'
@@ -126,14 +125,11 @@ nnoremap <leader>. ;
 nnoremap <leader>, ,
 "Highlight search matches
 nnoremap <leader>h :set hlsearch!<cr>
-"Search file names
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
 "Navigate files
-map <C-n> :NERDTreeToggle<CR>
+map <c-n> :NERDTreeToggle<cr>
 let NERDTreeShowHidden=1
 "Navigate tags
-map <C-t> :TagbarToggle<CR>
+map <c-t> :TagbarToggle<cr>
 "Display all lines with keyword under cursor
 "   and ask which one to jump to
 nmap <leader>j [I:let nr = input("Select: ")<bar>exe "normal " . nr ."[\t"<cr>

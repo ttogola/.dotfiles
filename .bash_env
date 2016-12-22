@@ -1,9 +1,9 @@
 #!/bin/bash
 
 export EDITOR="vim"
-export TERM="screen-256color"
+#export TERM="screen-256color"
 export PATH=$PATH:.
-#export NODE_PATH='/usr/local/lib/node_modules'
+export NODE_PATH='/usr/lib/node_modules'
 export h="/mnt/c/Users/Tieme"
 export d=$h"/Desktop"
 export s=$h"/Google Drive/uni/winter2017"

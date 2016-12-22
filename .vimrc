@@ -34,8 +34,8 @@ nnoremap Y y$
 "TEXT
 colorscheme pablo
 syntax enable
-set t_Co=256
-set background=dark
+"set t_Co=256
+"set background=dark
 set number
 set relativenumber
 set shiftwidth=4

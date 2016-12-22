@@ -52,6 +52,7 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 nnoremap <leader>s :set spell!<cr>
 "Highlight column
 nnoremap <leader><bslash> :set cursorcolumn!<cr>
+highlight cursorcolumn ctermbg=cyan
 """"""""""""""""""""""""""""""""""""""""""""""""
 
 "SYNTASTIC

@@ -13,16 +13,16 @@ set updatetime=0
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
-"call vundle#begin()
-"Plugin 'gmarik/Vundle.vim'
-"Plugin 'scrooloose/syntastic'
-"Plugin 'scrooloose/nerdcommenter.git'
-"Plugin 'scrooloose/nerdtree.git'
-"Plugin 'kien/ctrlp.vim'
-"Plugin 'majutsushi/tagbar.git'
-"Plugin 'tpope/vim-fugitive.git'
-"Plugin 'tpope/vim-surround.git'
-"call vundle#end()
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter.git'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar.git'
+Plugin 'tpope/vim-fugitive.git'
+Plugin 'tpope/vim-surround.git'
+call vundle#end()
 
 filetype plugin indent on
 """""""""""""""""""""""""
@@ -55,24 +55,24 @@ nnoremap <leader><bslash> :set cursorcolumn!<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""
 
 "SYNTASTIC
-"nnoremap [e :lprev<CR>
-"nnoremap ]e :lnext<CR>
+nnoremap [e :lprev<CR>
+nnoremap ]e :lnext<CR>
 "TODO: syntastic html, js(jslint?) and other langs used
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"let g:syntastic_java_javac_config_file_enabled = 1
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_java_javac_config_file_enabled = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 """"""""""""""""""""""""""""""""
 
 "FUGITIVE
 " Gstatus [- (add/reset highlighted), cc (commit), r (reload status)]
 " Gpush
-"nnoremap <leader>` :Gstatus<CR>
-"nnoremap <leader><Tab> :Gdiff<CR>
+nnoremap <leader>` :Gstatus<CR>
+nnoremap <leader><Tab> :Gdiff<CR>
 """"""""""""""""""""""""""""""""""
 
 "UTIL
@@ -127,12 +127,13 @@ nnoremap <leader>, ,
 "Highlight search matches
 nnoremap <leader>h :set hlsearch!<cr>
 "Search file names
-"let g:ctrlp_map = '<c-p>'
-"let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 "Navigate files
-"map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
 "Navigate tags
-"map <C-t> :TagbarToggle<CR>
+map <C-t> :TagbarToggle<CR>
 "Display all lines with keyword under cursor
 "   and ask which one to jump to
 nmap <leader>j [I:let nr = input("Select: ")<bar>exe "normal " . nr ."[\t"<cr>

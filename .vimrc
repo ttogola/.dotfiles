@@ -43,6 +43,7 @@ set softtabstop=4
 set expandtab
 set nojoinspaces
 set smartindent
+set fileformat=unix
 "Show whitespace
 set list
 "Highlight problematic whitespace

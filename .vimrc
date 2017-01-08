@@ -3,9 +3,12 @@
 "       indicate intermediate binding value
 "       auto resize splits when coming back to vim pane (mksession,winfocus)
 "       easier scroll through cmd history
-"       call gdb/valgrind from within vim
-"       common template files in .vim
-"       jedi completion
+"       call gdb/valgrind/cscopes from within vim
+"       common template files in .vim, could use :read
+"       plugins needed?
+
+"ctags: tweak mapping to auto update tags + free up ctrl-t for going back
+"vimgrep...
 
 "VUNDLE
 set nocompatible
@@ -17,7 +20,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter.git'
-Plugin 'scrooloose/nerdtree.git'
 Plugin 'majutsushi/tagbar.git'
 Plugin 'tpope/vim-fugitive.git'
 Plugin 'tpope/vim-surround.git'
@@ -118,6 +120,7 @@ au FileType html setlocal shiftwidth=2 softtabstop=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 "SEARCH / NAVIGATION
+set path+=**
 set gdefault
 set incsearch
 nnoremap / /\v
@@ -127,9 +130,6 @@ nnoremap <leader>. ;
 nnoremap <leader>, ,
 "Highlight search matches
 nnoremap <leader>h :set hlsearch!<cr>
-"Navigate files
-map <c-n> :NERDTreeToggle<cr>
-let NERDTreeShowHidden=1
 "Navigate tags
 map <c-t> :TagbarToggle<cr>
 "Display all lines with keyword under cursor
@@ -146,6 +146,7 @@ nnoremap _ :split<cr>
 """""""""""""""""""""""""
 
 "BUFFERS
+"Tip: use :b substring to jump to matching buffer
 nnoremap <leader>l :ls<cr>:buffer<space>
 nnoremap <leader>b :bprevious<cr>
 nnoremap <leader>f :bnext<cr>

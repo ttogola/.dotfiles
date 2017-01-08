@@ -3,11 +3,10 @@
 "       indicate intermediate binding value
 "       auto resize splits when coming back to vim pane (mksession,winfocus)
 "       easier scroll through cmd history
-"       call gdb/valgrind/cscopes from within vim
+"       call gdb/valgrind from within vim
 "       common template files in .vim, could use :read
 "       plugins needed?
 
-"ctags: tweak mapping to auto update tags + free up ctrl-t for going back
 "vimgrep...
 
 "VUNDLE
@@ -131,7 +130,7 @@ nnoremap <leader>, ,
 "Highlight search matches
 nnoremap <leader>h :set hlsearch!<cr>
 "Navigate tags
-map <c-t> :TagbarToggle<cr>
+map <c-n> :TagbarToggle<cr>
 "Display all lines with keyword under cursor
 "   and ask which one to jump to
 nmap <leader>j [I:let nr = input("Select: ")<bar>exe "normal " . nr ."[\t"<cr>

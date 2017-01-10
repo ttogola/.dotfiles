@@ -95,7 +95,7 @@ let  @t = "iTODO: "
 "Applies the macro to the visual selection
 "   otherwise, use :1,3norm! @q for instance
 vnoremap @ :norm! @
-"Run prog (TODO: extend to other languages: bash, python, node)
+"Run prog (TODO: extend to other languages: bash, python, node, autodetect)
 nnoremap <leader>p :! ./%.out<cr>
 "Compile current C/C++ program (TODO: use make for bigger projects)
 nnoremap <leader>w :!cd %:p:h; g++ -Wall -g -std=c++11 %:t -o %:t.out<cr>
@@ -127,6 +127,8 @@ vnoremap / /\v
 "Find again <left right>
 nnoremap <leader>. ;
 nnoremap <leader>, ,
+"Display number of matches from previous search
+nnoremap <leader>n :%s///gn <CR>
 "Highlight search matches
 nnoremap <leader>h :set hlsearch!<cr>
 "Navigate tags

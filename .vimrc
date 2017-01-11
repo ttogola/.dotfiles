@@ -1,13 +1,7 @@
-"TODO:  auto-next item when in list, ...
-"       update compile to allow linking..
-"       indicate intermediate binding value
-"       auto resize splits when coming back to vim pane (mksession,winfocus)
-"       easier scroll through cmd history
-"       call gdb/valgrind from within vim
+"TODO:  call gdb/valgrind from within vim
 "       common template files in .vim, could use :read
+"       autocomplete dictionaries for languages + other completion tricks
 "       plugins needed?
-
-"vimgrep...
 
 "VUNDLE
 set nocompatible
@@ -89,9 +83,6 @@ inoremap <esc> <esc>:write<cr>
 nnoremap <leader>x <c-a>
 "Decrement int under cursor
 nnoremap <leader>z <c-x>
-"Refresh vimrc
-"Create a todo
-let  @t = "iTODO: "
 "Applies the macro to the visual selection
 "   otherwise, use :1,3norm! @q for instance
 vnoremap @ :norm! @
@@ -115,7 +106,6 @@ set wildignorecase
 
 "AUTOCMDS
 au FileType html setlocal shiftwidth=2 softtabstop=2
-"au ...
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 "SEARCH / NAVIGATION
@@ -157,8 +147,6 @@ nnoremap <leader>g :edit#<cr>
 nnoremap <leader>d :let lastClosed=expand('%:p')<cr>:bdelete<cr>
 "Open last closed file
 nnoremap <leader>o :execute ":edit " lastClosed<cr>
-"Show buffer number in status line.
-set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 "Allow buffer switching without saving
 set hidden
 """""""""""""""""""""""""""""""""""""""""

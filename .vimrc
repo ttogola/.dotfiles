@@ -2,6 +2,7 @@
 "       common template files in .vim, could use :read
 "       autocomplete dictionaries for languages + other completion tricks
 "       plugins needed?
+"       vimgrep and copen
 
 "VUNDLE
 set nocompatible
@@ -51,17 +52,17 @@ highlight cursorcolumn ctermbg=cyan
 """"""""""""""""""""""""""""""""""""""""""""""""
 
 "SYNTASTIC
-nnoremap [e :lprev<CR>
-nnoremap ]e :lnext<CR>
-"TODO: syntastic html, js(jslint?) and other langs used
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_java_javac_config_file_enabled = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"nnoremap [e :lprev<CR>
+"nnoremap ]e :lnext<CR>
+""TODO: syntastic html, js(jslint?) and other langs used
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_java_javac_config_file_enabled = 1
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 """"""""""""""""""""""""""""""""
 
 "FUGITIVE
@@ -93,6 +94,8 @@ nnoremap <leader>w :!cd %:p:h; g++ -Wall -g -std=c++11 %:t -o %:t.out<cr>
 "List registers and marks
 noremap <silent> <leader>rl :registers<cr>
 noremap <silent> <leader>ml :marks<cr>
+"Statusline
+set laststatus=2 statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 """"""""""""""""""""""""""""""""""""""
 
 "COMMAND LINE

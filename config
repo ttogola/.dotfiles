@@ -1,0 +1,7 @@
+# youtube-dl config
+
+--ignore-errors
+--extract-audio
+--audio-format mp3
+-f bestaudio
+--output "/mnt/c/Users/Tieme/Music/%(title)s.%(ext)s"

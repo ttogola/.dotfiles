@@ -1,0 +1,9 @@
+# Insert your preferred key mappings here.
+map > moveTabRight
+map < moveTabLeft
+unmap X
+unmap x
+map <c-x> togglePinTab
+map <c-g> visitPreviousTab
+map <c-u> scrollPageUp
+map <c-d> scrollPageDown

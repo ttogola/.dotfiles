@@ -1,7 +1,13 @@
 # youtube-dl config
 
 --ignore-errors
+
+--add-metadata
+--metadata-from-title "(?P<artist>.+?) - [\"\']?(?P<title>[^\(\[\"\']+).*"
+--embed-thumbnail
+
 --extract-audio
 --audio-format mp3
 -f bestaudio
+
 --output "/mnt/c/Users/Tieme/Music/%(title)s.%(ext)s"

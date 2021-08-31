@@ -7,3 +7,9 @@ map <c-x> togglePinTab
 map <c-g> visitPreviousTab
 map <c-u> scrollPageUp
 map <c-d> scrollPageDown
+
+# Custom search engines
+#y: https://www.youtube.com/results?search_query=%s Youtube
+#gm: https://www.google.com/maps?q=%s Google maps
+#tr: https://translate.google.com/?source=osdd#auto|auto|%s Google Translator
+#gh: https://github.com/search?q=%s GitHub

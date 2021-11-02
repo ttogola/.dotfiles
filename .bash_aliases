@@ -20,8 +20,8 @@ alias gll='git log -1 HEAD'
 alias gl='git log --oneline --decorate'
 
 # dev / temp
-alias g++='g++ -Wall -g -std=c++11'
-alias cds='cd "$s"'
+#alias g++='g++ -Wall -g -std=c++11'
+#alias cds='cd "$s"'
 
 # let sudo use the user-set PATH
 #alias sudo='sudo env PATH=$PATH'

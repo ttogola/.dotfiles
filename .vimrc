@@ -5,21 +5,21 @@
 "       vimgrep and copen
 
 "VUNDLE
-set nocompatible
-set updatetime=0
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdcommenter.git'
-Plugin 'majutsushi/tagbar.git'
-Plugin 'tpope/vim-fugitive.git'
-Plugin 'tpope/vim-surround.git'
-call vundle#end()
-
-filetype plugin indent on
+"set nocompatible
+"set updatetime=0
+"filetype off
+"set rtp+=~/.vim/bundle/Vundle.vim
+"
+"call vundle#begin()
+"Plugin 'gmarik/Vundle.vim'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/nerdcommenter.git'
+"Plugin 'majutsushi/tagbar.git'
+"Plugin 'tpope/vim-fugitive.git'
+"Plugin 'tpope/vim-surround.git'
+"call vundle#end()
+"
+"filetype plugin indent on
 """""""""""""""""""""""""
 
 let mapleader=","
@@ -28,10 +28,10 @@ noremap 0 ^
 nnoremap Y y$
 
 "TEXT
-colorscheme pablo
+colorscheme solarized
 syntax enable
-"set t_Co=256
-"set background=dark
+set t_Co=256
+set background=dark
 set number
 set relativenumber
 set shiftwidth=4
@@ -40,6 +40,8 @@ set expandtab
 set nojoinspaces
 set smartindent
 set fileformat=unix
+" Use new regular expression engine
+set re=0
 "Show whitespace
 set list
 "Highlight problematic whitespace
@@ -89,8 +91,8 @@ nnoremap <leader>z <c-x>
 vnoremap @ :norm! @
 "Run prog (TODO: extend to other languages: bash, python, node, autodetect)
 nnoremap <leader>p :! ./%.out<cr>
-"Compile current C/C++ program (TODO: use make for bigger projects)
-nnoremap <leader>w :!cd %:p:h; g++ -Wall -g -std=c++11 %:t -o %:t.out<cr>
+"Toggle paste mode
+nnoremap <leader>w :set invpaste paste?<cr>
 "List registers and marks
 noremap <silent> <leader>rl :registers<cr>
 noremap <silent> <leader>ml :marks<cr>
